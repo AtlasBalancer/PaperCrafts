@@ -1,0 +1,46 @@
+# Ignore everything by default
+*
+
+# But include UPM package folder
+!com/ab/papercrafts/
+!com/ab/papercrafts/**
+
+# Ignore meta files (optional, if не нужны для Git)
+*.meta
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Ignore IDE config
+.vscode/
+.idea/
+
+# Ignore build/system output
+Library/
+Logs/
+obj/
+Temp/
+UserSettings/
+Packages/manifest.json
+ProjectSettings/
+*.csproj
+*.sln
+*.user
+*.unityproj
+*.pidb
+*.suo
+*.userprefs
+*.unitypackage
+
+# Ignore Unity generated assets
+*.asset
+*.prefab
+*.unity
+*.mat
+*.controller
+*.anim
+
+# Ignore hidden files
+.*
