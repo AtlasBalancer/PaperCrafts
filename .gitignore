@@ -2,8 +2,8 @@
 *
 
 # But include UPM package folder
-!com/ab/papercrafts/
-!com/ab/papercrafts/**
+!Assets/com/ab/papercrafts/
+!Assets/com/ab/papercrafts/**
 
 # Ignore meta files (optional, if не нужны для Git)
 *.meta
