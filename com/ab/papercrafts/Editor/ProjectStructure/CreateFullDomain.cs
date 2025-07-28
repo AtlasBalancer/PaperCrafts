@@ -2,11 +2,13 @@
 using System.IO;
 using UnityEditor;
 using UnityEngine;
+#endif
 
 namespace com.ab.papercrafts.editor
 {
     public class CreateFullDomain : EditorWindow
     {
+#if UNITY_EDITOR
         const string SUBFOLDER_MEDIA = "Media";
         const string SUBFOLDER_SCRIPTS = "Scripts";
 
@@ -116,6 +118,6 @@ namespace com.ab.papercrafts.editor
                 File.WriteAllText(asmdefPath, json);
             }
         }
+#endif
     }
 }
-#endif
