@@ -1,21 +1,22 @@
+#if UNITY_EDITOR
 using System.IO;
 using UnityEditor;
 using UnityEngine;
 
 namespace com.ab.papercrafts.editor
 {
-    public class ProjectStructureCreateDomain : EditorWindow
+    public class CreateFullDomain : EditorWindow
     {
         const string SUBFOLDER_MEDIA = "Media";
         const string SUBFOLDER_SCRIPTS = "Scripts";
-        
+
         string _rootFolderName = "NewDomain";
         string _asmdefName = "com.ab.newdomain";
 
-        [MenuItem("Assets/Create/Plugins/Project Structure/Create Folder Structure", false, 100)]
+        [MenuItem("Assets/Create/Plugins/Project Structure/Create full domain", false, 100)]
         public static void ShowWindow()
         {
-            ProjectStructureCreateDomain window = CreateInstance<ProjectStructureCreateDomain>();
+            CreateFullDomain window = CreateInstance<CreateFullDomain>();
             window.titleContent = new GUIContent("Create Folder Structure");
             window.minSize = new Vector2(300, 80);
             window.ShowUtility();
@@ -57,9 +58,9 @@ namespace com.ab.papercrafts.editor
         void CreateSubFolderScripts(string rootPath)
         {
             CreateSubFolder(rootPath, SUBFOLDER_SCRIPTS);
-            
+
             string subfolderPath = Path.Combine(rootPath, SUBFOLDER_SCRIPTS);
-            
+
             CreateSubFolder(subfolderPath, "API");
             CreateSubFolder(subfolderPath, "Model");
             CreateSubFolder(subfolderPath, "Logic");
@@ -117,3 +118,4 @@ namespace com.ab.papercrafts.editor
         }
     }
 }
+#endif
