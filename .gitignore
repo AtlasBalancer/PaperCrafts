@@ -1,12 +1,12 @@
 # Ignore everything by default
-*
+#*
 
 # But include UPM package folder
 !Assets/com/ab/papercrafts/
 !Assets/com/ab/papercrafts/**
 
-# Ignore meta files (optional, if не нужны для Git)
-*.meta
+# Ignore meta files
+#*.meta
 
 # Ignore system files
 .DS_Store
