@@ -1,7 +1,9 @@
 {
     "name": "com.ab.papercrafts.editor",
     "rootNamespace": "com.ab.papercrafts.editor",
-    "references": [],
+    "references": [
+        "GUID:47975768757ef0e48a1fbfa4f69601a8"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
