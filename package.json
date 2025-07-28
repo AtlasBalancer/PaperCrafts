@@ -9,6 +9,9 @@
     "email": "aleh.biaketa.29.09.89@gmail.com",
     "url": "https://github.com/AtlasBalancer"
   },
+  "links": {
+    "documentation": "README.md"
+  },
   "license": "MIT",
   "keywords": [
     "unity",
