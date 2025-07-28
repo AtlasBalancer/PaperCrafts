@@ -1,4 +1,4 @@
-<img src="Documentation~/icon.png" alt="PaperCrafts Logo" width="150"/>
+<img src="Documentation~/Icon.png" alt="PaperCrafts Logo" width="150"/>
 
 Introduction
 ---
