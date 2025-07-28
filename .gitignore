@@ -2,8 +2,8 @@
 #*
 
 # But include UPM package folder
-!Assets/com/ab/papercrafts/
-!Assets/com/ab/papercrafts/**
+!com/ab/papercrafts/
+!com/ab/papercrafts/**
 
 # Ignore meta files
 #*.meta
