@@ -2,7 +2,9 @@
     "name": "com.ab.papercrafts.test",
     "rootNamespace": "com.ab.papercrafts.test",
     "references": [],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
