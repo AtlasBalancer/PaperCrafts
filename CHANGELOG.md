@@ -4,3 +4,4 @@
 - Debug fps watcher
 - Custom hot key
 - Force boot scene on play
+- Create domain pattern
