@@ -1,4 +1,4 @@
-![PaperCrafts Logo](Documentation~/icon.png)
+![PaperCrafts Logo](Documentation~/Icon.png)
 
 Introduction
 ---
