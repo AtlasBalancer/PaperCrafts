@@ -1,5 +1,6 @@
-
-public class PaperCraftsEditorTest
+namespace com.ab.papercrafts
 {
-    
+    public class PaperCraftsEditorTest
+    {
+    }
 }
