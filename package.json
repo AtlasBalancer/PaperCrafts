@@ -9,13 +9,13 @@
     "email": "aleh.biaketa.29.09.89@gmail.com",
     "url": "https://github.com/AtlasBalancer"
   },
-  "links": {
-    "documentation": "README.md"
-  },
   "license": "MIT",
+  "type": "library",
+  "links": {
+    "documentation": "https://github.com/AtlasBalancer/PaperCrafts/blob/master/README.md"
+  },
   "keywords": [
     "unity",
     "tools"
-  ],
-  "type": "library"
+  ]
 }
