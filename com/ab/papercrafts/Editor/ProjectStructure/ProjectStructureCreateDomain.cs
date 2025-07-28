@@ -12,7 +12,7 @@ namespace com.ab.papercrafts.editor
         string _rootFolderName = "NewDomain";
         string _asmdefName = "com.ab.newdomain";
 
-        [MenuItem("Assets/Create/Project Structure/Create Folder Structure", false, 100)]
+        [MenuItem("Assets/Create/Plugins/Project Structure/Create Folder Structure", false, 100)]
         public static void ShowWindow()
         {
             ProjectStructureCreateDomain window = CreateInstance<ProjectStructureCreateDomain>();
