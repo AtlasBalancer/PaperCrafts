@@ -4,17 +4,21 @@ using UnityEngine;
 
 namespace com.ab.papercrafts.editor
 {
-    public class CreateCommonModule : EditorWindow
+    public class CreateCleanArchitectureModule : EditorWindow
     {
-        const string WINDOW_TITLE = "Create common module structure";
+        const string WINDOW_TITLE = "Create clean architecture module structure";
         
-        string _rootFolderName = "NewDomain";
-        string _asmdefName = "com.ab.newdomain";
+        const string DOMAIN_FOLDER = "Domain";
+        const string APLICATION_FLODER = "Aplication";
+        const string PRESENTATION_FOLDER = "Presentation";
+        const string INFRASTRUCTURE_FOLDER = "Infrastructure";
         
-        [MenuItem("Assets/Create/Plugins/Project Structure/Create common module", false, 100)]
+        string _rootFolderName = "CAModule";
+        string _asmdefName = "com.ab.camodule";
+        
+        [MenuItem("Assets/Create/Plugins/Project Structure/Create clean architecture module", false, 100)]
         public static void ShowWindow() => 
-            ProjectStructure.ShowWindow<CreateCommonModule>(WINDOW_TITLE);
- 
+            ProjectStructure.ShowWindow<CreateCleanArchitectureModule>(WINDOW_TITLE);
         
         void OnGUI()
         {
@@ -37,6 +41,11 @@ namespace com.ab.papercrafts.editor
             if (!AssetDatabase.IsValidFolder(rootPath))
                 AssetDatabase.CreateFolder(basePath, _rootFolderName);
 
+            ProjectStructure.CreateFolder(rootPath, DOMAIN_FOLDER);
+            ProjectStructure.CreateFolder(rootPath, APLICATION_FLODER);
+            ProjectStructure.CreateFolder(rootPath, PRESENTATION_FOLDER);
+            ProjectStructure.CreateFolder(rootPath, INFRASTRUCTURE_FOLDER);
+            
             ProjectStructure.CreateReadme(rootPath, _rootFolderName);
 
             string amsDefName = string.IsNullOrEmpty(_asmdefName) ? _rootFolderName : _asmdefName;

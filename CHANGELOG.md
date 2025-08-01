@@ -6,3 +6,4 @@
 - Force boot scene on play
 - Create domain pattern
 - Create common module template
+- Create clean architecture template

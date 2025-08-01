@@ -21,7 +21,7 @@ namespace com.ab.papercrafts.editor
             window.ShowUtility();
         }
 
-        public static void CreateSubFolder(string parentPath, string folderName)
+        public static void CreateFolder(string parentPath, string folderName)
         {
             if (!AssetDatabase.IsValidFolder(Path.Combine(parentPath, folderName)))
                 AssetDatabase.CreateFolder(parentPath, folderName);

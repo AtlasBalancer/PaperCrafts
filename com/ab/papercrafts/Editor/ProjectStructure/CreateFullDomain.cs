@@ -52,26 +52,26 @@ namespace com.ab.papercrafts.editor
 
         void CreateSubFolderScripts(string rootPath)
         {
-            ProjectStructure.CreateSubFolder(rootPath, SUBFOLDER_SCRIPTS);
+            ProjectStructure.CreateFolder(rootPath, SUBFOLDER_SCRIPTS);
 
             string subfolderPath = Path.Combine(rootPath, SUBFOLDER_SCRIPTS);
 
-            ProjectStructure.CreateSubFolder(subfolderPath, "API");
-            ProjectStructure.CreateSubFolder(subfolderPath, "Model");
-            ProjectStructure.CreateSubFolder(subfolderPath, "Logic");
+            ProjectStructure.CreateFolder(subfolderPath, "API");
+            ProjectStructure.CreateFolder(subfolderPath, "Model");
+            ProjectStructure.CreateFolder(subfolderPath, "Logic");
         }
 
         void CreateSubFolderMedia(string rootPath)
         {
-            ProjectStructure.CreateSubFolder(rootPath, SUBFOLDER_MEDIA);
+            ProjectStructure.CreateFolder(rootPath, SUBFOLDER_MEDIA);
 
             string subfolderPath = Path.Combine(rootPath, SUBFOLDER_MEDIA);
 
-            ProjectStructure.CreateSubFolder(subfolderPath, "Scenes");
-            ProjectStructure.CreateSubFolder(subfolderPath, "Prefabs");
-            ProjectStructure.CreateSubFolder(subfolderPath, "Materials");
-            ProjectStructure.CreateSubFolder(subfolderPath, "Textures");
-            ProjectStructure.CreateSubFolder(subfolderPath, "Audio");
+            ProjectStructure.CreateFolder(subfolderPath, "Scenes");
+            ProjectStructure.CreateFolder(subfolderPath, "Prefabs");
+            ProjectStructure.CreateFolder(subfolderPath, "Materials");
+            ProjectStructure.CreateFolder(subfolderPath, "Textures");
+            ProjectStructure.CreateFolder(subfolderPath, "Audio");
         }
     }
 }
