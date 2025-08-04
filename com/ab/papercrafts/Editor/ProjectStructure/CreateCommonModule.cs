@@ -21,6 +21,7 @@ namespace com.ab.papercrafts.editor
             GUILayout.Label("Enter common module name", EditorStyles.boldLabel);
             _rootFolderName = EditorGUILayout.TextField("Folder name", _rootFolderName);
             _asmdefName = EditorGUILayout.TextField("AsmDef name", _asmdefName);
+         
             GUILayout.Space(10);
             if (GUILayout.Button("Create"))
             {

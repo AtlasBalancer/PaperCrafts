@@ -1,6 +1,9 @@
+using System;
 using System.IO;
 using UnityEditor;
+using UnityEditorInternal;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace com.ab.papercrafts.editor
 {
@@ -11,20 +14,26 @@ namespace com.ab.papercrafts.editor
 
         public static void ShowWindow<TWindow>(
             string title,
-            float width = 150f,
-            float height = 80f)
+            float width = 300f,
+            float height = 180f)
             where TWindow : EditorWindow
         {
             TWindow window = CreateInstance<TWindow>();
             window.titleContent = new GUIContent(title);
             window.minSize = new Vector2(width, height);
+            window.position = new Rect(new Vector2(0, 0), new Vector2(width, height));
             window.ShowUtility();
         }
 
-        public static void CreateFolder(string parentPath, string folderName)
+
+        public static string CreateFolder(string parentPath, string folderName)
         {
-            if (!AssetDatabase.IsValidFolder(Path.Combine(parentPath, folderName)))
+            string path = Path.Combine(parentPath, folderName);
+
+            if (!AssetDatabase.IsValidFolder(path))
                 AssetDatabase.CreateFolder(parentPath, folderName);
+
+            return path;
         }
 
         public static string GetSelectedPathOrFallback()
@@ -48,18 +57,66 @@ namespace com.ab.papercrafts.editor
             string readmePath = Path.Combine(rootPath, "README.md");
             if (!File.Exists(readmePath))
             {
-                File.WriteAllText(readmePath, $"# {descriptionTag}\n\n{description}");
+                File.WriteAllText(readmePath, $"(# {descriptionTag})\n\n{description}");
             }
         }
 
-        public static void CreateAsmDef(string targetPath, string name)
+        public static AssemblyDefinitionAsset CreateAsmDef(string folderPath, string asmDefName,
+            string[] references = null)
         {
-            string asmdefPath = Path.Combine(targetPath, $"{name}.asmdef");
-            if (!File.Exists(asmdefPath))
+            if (!Directory.Exists(folderPath))
+                Directory.CreateDirectory(folderPath);
+
+            string asmdefPath = Path.Combine(folderPath, asmDefName + ".asmdef");
+            AssemblyDefinition asmdef = new AssemblyDefinition
             {
-                string json = $"{{\n  \"name\": \"{name}\"\n}}";
-                File.WriteAllText(asmdefPath, json);
-            }
+                name = asmDefName,
+                rootNamespace = asmDefName,
+                references = references ?? new string[0],
+                optionalUnityReferences = new string[0],
+                includePlatforms = new string[0],
+                excludePlatforms = new string[0],
+                allowUnsafeCode = false,
+                overrideReferences = false,
+                precompiledReferences = new string[0],
+                autoReferenced = true,
+                defineConstraints = new string[0],
+                versionDefines = new AssemblyDefinitionVersionDefine[0],
+                noEngineReferences = false
+            };
+
+            string json = JsonUtility.ToJson(asmdef, true);
+            File.WriteAllText(asmdefPath, json);
+            AssetDatabase.ImportAsset(asmdefPath);
+
+            return AssetDatabase.LoadAssetAtPath<AssemblyDefinitionAsset>(asmdefPath);
+        }
+
+
+        [Serializable]
+        class AssemblyDefinition
+        {
+            public string name;
+            public string rootNamespace;
+            public string[] references;
+            public string[] optionalUnityReferences;
+            public string[] includePlatforms;
+            public string[] excludePlatforms;
+            public bool allowUnsafeCode;
+            public bool overrideReferences;
+            public string[] precompiledReferences;
+            public bool autoReferenced;
+            public string[] defineConstraints;
+            public AssemblyDefinitionVersionDefine[] versionDefines;
+            public bool noEngineReferences;
+        }
+
+        [Serializable]
+        class AssemblyDefinitionVersionDefine
+        {
+            public string name;
+            public string expression;
+            public string define;
         }
     }
 }
