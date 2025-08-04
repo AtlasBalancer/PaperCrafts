@@ -10,12 +10,12 @@ namespace com.ab.papercrafts.editor
         const string WINDOW_TITLE = "Create clean architecture module structure";
 
         const string DOMAIN_FOLDER = "Domain";
-        const string APLICATION_FLODER = "Aplication";
+        const string APPLICATION_FLODER = "Application";
         const string PRESENTATION_FOLDER = "Presentation";
-        const string INFRASTRUCTURE_FOLDER = "Infrastructure";
-        
+        const string INTEGRATIONS_FOLDER = "Integrations";
+
         const string DOMAIN = "domain";
-        
+
         const string FOLDER_NAME_INPUT = "Folder name";
         const string ASMDEF_INPUT = "AsmDef name";
 
@@ -46,22 +46,28 @@ namespace com.ab.papercrafts.editor
             string basePath = ProjectStructure.GetSelectedPathOrFallback();
             string rootPath = Path.Combine(basePath, _rootFolderName);
             string asmDefDomainName = $"{(string.IsNullOrEmpty(_asmdefName) ? _rootFolderName : _asmdefName)}.{DOMAIN}";
-            string apiFolder = ProjectStructure.CreateFolder(rootPath, INFRASTRUCTURE_FOLDER);
+            string apiFolder = ProjectStructure.CreateFolder(rootPath, INTEGRATIONS_FOLDER);
 
             if (!AssetDatabase.IsValidFolder(rootPath))
                 AssetDatabase.CreateFolder(basePath, _rootFolderName);
 
-            ProjectStructure.CreateFolder(rootPath, DOMAIN_FOLDER);
-            ProjectStructure.CreateFolder(rootPath, APLICATION_FLODER);
-            ProjectStructure.CreateFolder(rootPath, PRESENTATION_FOLDER);
+            string domainPath = ProjectStructure.CreateFolder(rootPath, DOMAIN_FOLDER);
+            ProjectStructure.CreateReadme(domainPath, $"{_asmdefName}/{DOMAIN_FOLDER}");
 
-            ProjectStructure.CreateReadme(rootPath, _rootFolderName);
+            string applicationPath = ProjectStructure.CreateFolder(rootPath, APPLICATION_FLODER);
+            ProjectStructure.CreateReadme(applicationPath, $"{_asmdefName}/{APPLICATION_FLODER}");
+
+            string presentationPath = ProjectStructure.CreateFolder(rootPath, PRESENTATION_FOLDER);
+            ProjectStructure.CreateReadme(presentationPath, $"{_asmdefName}/{PRESENTATION_FOLDER}");
+
+            ProjectStructure.CreateReadme(rootPath, $"{_rootFolderName}\n#{_asmdefName}");
             AssemblyDefinitionAsset asmDefDomain = ProjectStructure.CreateAsmDef(rootPath, asmDefDomainName);
             ProjectStructure.CreateAsmDef(apiFolder, _asmdefName, new[] { asmDefDomain.name });
-
+            ProjectStructure.CreateReadme(apiFolder, $"{_asmdefName}/{INTEGRATIONS_FOLDER}");
+            
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
-            Debug.Log($"PaperCrafts:: Folder structure '{_rootFolderName}' created under {basePath}");
+            Debug.Log($"PaperCrafts::{nameof(CreateCleanArchitectureModule)}: <color=green>creation module successfully completed</color>");
         }
     }
 }

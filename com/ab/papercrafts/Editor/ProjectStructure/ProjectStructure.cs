@@ -1,5 +1,7 @@
 using System;
 using System.IO;
+using System.Linq;
+using System.Text;
 using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
@@ -51,13 +53,13 @@ namespace com.ab.papercrafts.editor
 
         public static void CreateReadme(
             string rootPath,
-            string descriptionTag = README_TAG,
+            string tag = README_TAG,
             string description = README_DESC)
         {
             string readmePath = Path.Combine(rootPath, "README.md");
             if (!File.Exists(readmePath))
             {
-                File.WriteAllText(readmePath, $"(# {descriptionTag})\n\n{description}");
+                File.WriteAllText(readmePath, $"#{tag}\n\n{description}");
             }
         }
 
