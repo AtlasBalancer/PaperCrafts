@@ -19,6 +19,10 @@ namespace com.ab.papercrafts.editor
         const string FOLDER_NAME_INPUT = "Folder name";
         const string ASMDEF_INPUT = "AsmDef name";
 
+        const string MEDIA = "Media";
+        const string SOURCES = "Src";
+        const string DEFINITIONS = "Def";
+
         string _rootFolderName = "CAModule";
         string _asmdefName = "com.ab.camodule";
 
@@ -64,10 +68,19 @@ namespace com.ab.papercrafts.editor
             AssemblyDefinitionAsset asmDefDomain = ProjectStructure.CreateAsmDef(rootPath, asmDefDomainName);
             ProjectStructure.CreateAsmDef(apiFolder, _asmdefName, new[] { asmDefDomain.name });
             ProjectStructure.CreateReadme(apiFolder, $"{_asmdefName}/{INTEGRATIONS_FOLDER}");
-            
+            CreateApiSubFolders(apiFolder);
+
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
-            Debug.Log($"PaperCrafts::{nameof(CreateCleanArchitectureModule)}: <color=green>creation module successfully completed</color>");
+            Debug.Log(
+                $"PaperCrafts::{nameof(CreateCleanArchitectureModule)}: <color=green>creation module successfully completed</color>");
+        }
+
+        static void CreateApiSubFolders(string apiFolder)
+        {
+            ProjectStructure.CreateReadme(ProjectStructure.CreateFolder(apiFolder, MEDIA));
+            ProjectStructure.CreateReadme(ProjectStructure.CreateFolder(apiFolder, SOURCES));
+            ProjectStructure.CreateReadme(ProjectStructure.CreateFolder(apiFolder, DEFINITIONS));
         }
     }
 }
